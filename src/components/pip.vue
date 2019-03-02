@@ -14,7 +14,8 @@
             pipe_w: 52,     // 管道 的宽度
             pipe_h: 400,    // 管道的高度
             left01: 0,      // 第一列管道的left值
-            left02: 0,      // 第一列管道的left值 
+            left02: 0,      // 第一列管道的left值
+            top: -250,      // top01,top02,以这个高度为基准点随机加个数, top03, top04由top01,top02,决定
             top01: -250,    // 第一列上top值
             top02: -250,    // 第二列上top值
             can_add01: true,// 第一列管道是否可以加分, 如果已经加过了就false
@@ -58,9 +59,13 @@
             // 数据更新==============================================================================
             // 管道数据初始化
             init() {
-                this.w = document.getElementById('app').getBoundingClientRect().width // #app 的宽度
+                let app = document.getElementById('app').getBoundingClientRect()
+                this.w = app.width // #app 的宽度
                 this.left01 = this.w
                 this.left02 = this.w + this.w/2
+                this.top = app.height<680?-300:-250
+                this.top01 = this.top
+                this.top02 = this.top
             },
             // 场景二管道数据更新
             updata() {
@@ -79,9 +84,10 @@
             },
             // 随机设置管道高度
             radom() {
+                let {top} = this
                 let height = document.getElementById('app').getBoundingClientRect().height
                 // 如果高度大于750随机浮动值就大一点
-                let num = height>750?parseInt(Math.random()*200)-250:parseInt(Math.random()*100)-250
+                let num = height>750?parseInt(Math.random()*200)+top:parseInt(Math.random()*100)+top
                 return num
             },
             // 获取pipes的数据 (用于管道碰撞)

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" @click="up_up">
         <div id="score">{{score}}</div>
         <!-- 开始按钮 -->
         <img
@@ -150,8 +150,6 @@ export default {
             this.loop()
             this.btn_show=true
         }, 3000)
-        // 点击屏幕,小鸟向上飞
-        window.addEventListener('click', throttle(this.up_up, 100))
         // 刷新
     }
 }
