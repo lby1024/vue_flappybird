@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>vue_dev</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script>
+        rem()
+        window.onresize = () => rem()   // 当屏幕大小发生变化时执行 rem()
+        function rem () {
+            let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
+            if (htmlWidth>750) htmlWidth=750
+            let htmlDom = document.getElementsByTagName('html')[0];
+            htmlDom.style.fontSize= htmlWidth/375*100 + 'px';    // 如果宽度为375==>>1rem = 100px
+        }
+    </script>
+</body>
+
+</html>
